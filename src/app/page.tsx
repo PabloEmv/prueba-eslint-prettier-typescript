@@ -28,9 +28,10 @@ export default function Page(): JSX.Element {
         const fetchData = async (): Promise<void> => {
             try {
                 const response = await fetch(
-                    'https://rickandmortyapi.com/api/character'
+                    'https://pokeapi.co/api/v2/pokemon/1'
                 )
                 const data = await response.json()
+                console.log(data)
                 setCharacter(data.results)
             } catch (error) {
                 console.log(error)
@@ -40,14 +41,14 @@ export default function Page(): JSX.Element {
     }, [])
 
     return (
-        <div className=''>
+        <div className='grid md-col-2'>
             <h1 className='text-center mb-16'>Characters</h1>
             {character.map((c: PropsCharacter) => (
                 <div key={c.id} className={styles.row}>
                     <li className='text-center text-black'>{c.name}</li>
                     <Image
                         src={c.image}
-                        alt={c.name}
+                        alt={c.name + "img"}
                         width={200}
                         height={200}
                     />
